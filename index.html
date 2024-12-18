@@ -1,0 +1,413 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collatz-MI</title>
+<link rel="icon" type="image/png" href="webfav.png">
+<link rel="manifest" href="manifest.json"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+<style type="text/css">
+body{
+background-color:black;
+color:white;
+}
+.outC{
+display:flex;
+flex-wrap:wrap;
+gap:1px;
+align-items:center;
+}
+span{
+border-radius:360px;
+padding:6px;
+text-align:center;
+margin:5px;
+color:white;
+font-weight:bold;
+font-size:1rem;
+}
+i{
+color:red;
+font-weight:bold;
+}
+.inp{
+display:grid;
+grid-template-columns:auto auto auto;
+width:100%;
+}
+input,#chk{
+grid-column-start:1;
+grid-column-end:4;
+}
+#lrnB{
+grid-column-start:1;
+grid-column-end:2.5;
+}
+#rand{
+grid-column-start:2.5;
+grid-column-end:4;
+}
+
+
+input,button{
+padding:5px;
+background-color:black;
+color:white;
+width:100%;
+border-radius:7px;
+margin:4px;
+border:2px solid grey;
+border-top:none;
+border-left:none;
+border-right:none;
+}
+
+input:hover,button:hover{
+border:2px solid red;
+border-top:none;
+border-left:none;
+border-right:none;
+}
+
+.hei{
+width:80%;
+margin:10px;
+}
+input{
+border:2px solid red;
+border-top:none;
+border-left:none;
+border-right:none;
+}
+input::placeholder{
+color:white;
+}
+i{
+color:white;
+}
+
+#curve_chart{
+width:97%;
+padding:5px;
+}
+
+#auim{
+width:40%;
+border-radius:7px;
+margin:3px;
+}
+#cimg{
+width:70%;
+border-radius:7px;
+margin:3px;
+}
+
+a{
+text-decoration:none;
+color:white;
+}
+.lea{
+margin:3px;
+padding:3px;
+}
+h3{
+color:grey;
+}
+</style>
+
+</head>
+<body>
+<center>
+<img class="hei" src="collatz.png">
+
+</center>
+
+<input type="number" id="inpp" placeholder="Enter Positive Number">
+<div class="inp">
+<button id="lrnB"> Learn ?</button>
+<button id="rand"> Random </button>
+</div>
+<button id="chk" onclick="cx()"> Check </button>
+
+<div class="lea" id="lrn">
+
+
+<h3>Overview of the Collatz Conjecture</h3>
+<p>
+<center>
+<img id="auim" src="https://1.bp.blogspot.com/-x-_L3oruZ7Q/X1nEi-uJmbI/AAAAAAAAADw/3QKjDp0goPYKPRmVThNRSn1v7rl-RyKgwCLcBGAsYHQ/w500-h381/collatz.jpg">
+</center>
+The Collatz Conjecture is a mathematical hypothesis proposed in 1937 by Lothar Collatz, a German mathematician. It remains one of the unsolved problems in mathematics and is sometimes referred to as the 3x + 1 problem. Despite its simplicity, it has intrigued mathematicians for decades due to the lack of proof for its validity.
+</p>
+<h3>
+What Is the Collatz Conjecture?
+</h3>
+<p>
+The conjecture revolves around the following simple rules for any positive integer, n:
+<ul>
+<li>
+1. If n is even, divide it by 2:
+n → n / 2
+</li>
+<li>
+
+
+2. If n is odd, multiply it by 3 and add 1:
+n → 3n + 1
+</li>
+<li>
+
+The process is repeated for the resulting number. The conjecture claims that no matter what positive integer you start with, the sequence will eventually reach 1.
+</li>
+</ul>
+</p>
+<h3>
+History
+</h3>
+<p>
+The conjecture was first introduced by Lothar Collatz in 1937.
+
+It gained prominence in mathematical circles due to its deceptively simple formulation but highly complex behavior.
+
+Paul Erdős, a renowned mathematician, referred to the problem as “absolutely hopeless” in terms of finding a solution.
+
+To date, the conjecture has been tested for billions of numbers without finding a counterexample, but a general proof or disproof remains elusive.
+</p>
+<h3>
+How Does It Work?
+</h3>
+<p>
+<ul>
+<li>
+1. Choose a starting positive integer, n.
+
+</li>
+<li>
+2. Apply the rules (divide by 2 if even; multiply by 3 and add 1 if odd).
+</li>
+<li>
+
+3. Repeat the steps for the resulting number.
+</li>
+<li>
+
+4. Observe the sequence. According to the conjecture, no matter the starting value of n, the sequence will always eventually reach 1.
+</li>
+</ul>
+</p>
+<h3>
+Example
+</h3>
+<p>
+Let's take n = 6 as an example:
+<ul>
+<li>
+1. 6 is even → 6 ÷ 2 = 3
+</li>
+<li>
+
+2. 3 is odd → 3 × 3 + 1 = 10
+</li>
+<li>
+
+3. 10 is even → 10 ÷ 2 = 5
+</li>
+<li>
+
+4. 5 is odd → 5 × 3 + 1 = 16
+</li>
+<li>
+5. 16 is even → 16 ÷ 2 = 8
+</li>
+<li>
+6. 8 is even → 8 ÷ 2 = 4
+</li>
+<li>
+
+
+7. 4 is even → 4 ÷ 2 = 2
+</li>
+<li>
+
+8. 2 is even → 2 ÷ 2 = 1
+
+</li>
+</ul>
+
+The sequence is:
+6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+<br><br>
+No matter what starting number is chosen, the process always seems to reach 1, although this remains unproven for all numbers.
+
+
+</p>
+
+<h3> Learn More </h3>
+<p>
+<ul>
+<li> <i style="color:white;margin:3px;" class="fa-brands fa-google"></i> <a href="https://www.google.com/search?q=collatz+conjecture&oq=coll&gs_lcrp=EgZjaHJvbWUqDggAEEUYJxg7GIAEGIoFMg4IABBFGCcYOxiABBiKBTIOCAEQRRgnGDsYgAQYigUyBggCEEUYOzIGCAMQRRg5MgwIBBAAGEMYgAQYigUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDwyDAgIEC4YQxiABBiKBTIPCAkQABhDGLEDGIAEGIoFMgwIChAAGEMYgAQYigUyDAgLEAAYQxiABBiKBTIKCAwQABixAxiABDIKCA0QABixAxiABDIKCA4QABixAxiABNIBCDE4NzhqMGo0qAIBsAIB&client=ms-android-vivo-rvo2&sourceid=chrome-mobile&ie=UTF-8" > Collatz Conjecture </li>
+<li> <i style="color:white;margin:3px;" class="fa-brands fa-wikipedia-w"></i> <a href="https://en.m.wikipedia.org/wiki/Collatz_conjecture" > Collatz_conjecture</a></li>
+
+</ul>
+<center>
+
+<img id="cimg" src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*m4baUaM9S7DIFGku.png" alt="img">
+
+</center>
+</p>
+
+</div>
+
+
+<center><div id="curve_chart"></div></center>
+<div class="outC" id="outV"> </div> 
+<script type="text/javascript">
+
+
+document.getElementById("rand").addEventListener("click",()=>{
+
+let ranV= parseInt(Math.floor(Math.random()*(999-3)+3));
+document.getElementById("inpp").value=parseInt(ranV);
+
+document.getElementById("outV").innerHTML=" <h3 style='text-align:center;'> Computing..</h3>";
+document.getElementById("lrn").style.display="none";
+document.getElementById("outV").style.display="flex";
+document.getElementById("curve_chart").style.display="none";
+
+
+setTimeout(cx,1500);
+});
+
+
+
+
+document.getElementById("lrnB").addEventListener("click",()=>{
+document.getElementById("outV").style.display="none";
+document.getElementById("curve_chart").style.display="none";
+let diL=document.getElementById("lrn");
+if(diL.style.display=="none"){
+diL.style.display="block";
+
+}else{
+diL.style.display="none";
+}
+
+});
+
+
+
+
+
+let out=document.getElementById("outV");
+let arrData=[];
+let x=2;
+let y=0;
+let cou=0;
+function cc(){
+y=x;
+cou+=1;
+let temp=[0,0];
+if(x%2==0){
+x=((x/2));
+if(x%2==0){
+out.innerHTML+=`<span style="border:1.7px solid grey;"> ${x} </span> <i style="color:white;" class="bi bi-arrow-right"></i>`;
+arrData.push([cou,x]);
+}else{
+out.innerHTML+=`<span style="border:1.7px solid white;"> ${x} </span> <i style="color:white ;" class="bi bi-arrow-right"></i>`;
+arrData.push([cou,x]);
+}
+
+}
+else{
+x=(x*3+1);
+if(x%2==0){
+out.innerHTML+=`<span style="border:1.7px solid grey;"> ${x} </span> <i style="color:white ;" class="bi bi-arrow-right"></i>`;
+arrData.push([cou,x]);
+}else{
+out.innerHTML+=`<span style="border:1.7px solid white;"> ${x} </span> <i style="color: white;" class="bi bi-arrow-right"></i>`;
+
+arrData.push([cou,x]);
+}
+}
+
+if(x!==1){
+cc();
+}
+}
+
+function cx(){
+cou=0;
+arrData=[["step","value"]];
+document.getElementById("outV").innerHTML="";
+x=parseInt(document.getElementById("inpp").value) || 2;
+out.innerHTML+=`<span style="color:red;border:1.5px solid red;">&nbsp;${x}&nbsp;</span><i class="bi bi-arrow-right"></i>`;
+document.getElementById("lrn").style.display="none";
+document.getElementById("outV").style.display="flex";
+document.getElementById("curve_chart").style.display="block";
+cc();
+drawChart();
+document.getElementById("outV").children[document.getElementById("outV").children.length-2].style.fontSize="1.5rem";
+document.getElementById("outV").children[document.getElementById("outV").children.length-2].style.borderRadius="2px";
+document.getElementById("outV").children[document.getElementById("outV").children.length-1].style.display="none";
+
+}
+
+
+</script>
+
+
+<script type="text/javascript">
+
+google.charts.load('current', {'packages':['corechart']});
+
+ // google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+      cc();
+        var data = google.visualization.arrayToDataTable(arrData);
+        
+        
+        let options = {
+        legend: { position: 'none' },
+        pointSize: 2,
+        lineWidth: 1,
+        series: { 0: { color: 'red' } },
+        hAxis: {
+        
+        baselineColor: 'white',
+        gridlines: { color: 'grey', count: 1 },
+        },
+        vAxis: {
+        textStyle: { color: 'black' },
+        gridlines: { color: 'grey', count: 1 },
+        baselineColor: 'white',
+       
+        },
+        chartArea: {
+        width: '95%',
+        height: '75%',
+        top: '3%',
+        bottom:'3%'
+        },
+        tooltip: {
+        trigger: 'focus'
+        },
+        backgroundColor: { fill: 'transparent' },
+        animation: {
+        startup: true,
+        duration: 800,
+        easing: 'out'
+        }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
+      }
+
+
+</script>
+
+</body>
+</html>
