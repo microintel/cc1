@@ -122,17 +122,19 @@ color:grey;
 
 </head>
 <body>
+
 <center>
-<img class="hei" src="collatz.png">
+<img class="hei" id="himg" src="collatz.png">
 
 </center>
-
+<audio id="venom" style="display:none;" src="one-is.mp3"></audio>
 <input type="number" id="inpp" placeholder="Enter Positive Number">
 <div class="inp">
 <button id="lrnB"> Learn ?</button>
 <button id="rand"> Random </button>
 </div>
 <button id="chk" onclick="cx()"> Check </button>
+
 
 <div class="lea" id="lrn">
 
@@ -234,7 +236,7 @@ Let's take n = 6 as an example:
 </li>
 <li>
 
-8. 2 is even → 2 ÷ 2 = 1
+ 2 is even → 2 ÷ 2 = 1
 
 </li>
 </ul>
@@ -267,7 +269,18 @@ No matter what starting number is chosen, the process always seems to reach 1, a
 <center><div id="curve_chart"></div></center>
 <div class="outC" id="outV"> </div> 
 <script type="text/javascript">
+document.getElementById("himg").addEventListener("click",()=>{
 
+let venA=document.getElementById("venom");
+if(venA.paused){
+venA.play();
+venA.currentTime=0;
+}else{
+venA.pause();
+venA.currentTime=0;
+}
+
+});
 
 document.getElementById("rand").addEventListener("click",()=>{
 
